@@ -11,10 +11,13 @@
 <div class="example-wrapper">
     <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/andre/apps/EFC/ecf-restaurant-webapp/src/Controller/HomepageController.php'|file_link(0) }}">src/Controller/HomepageController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/andre/apps/EFC/ecf-restaurant-webapp/templates/homepage/index.html.twig'|file_link(0) }}">templates/homepage/index.html.twig</a></code></li>
-    </ul>
+    {% if app.user %}
+        Welcome {{ app.user.email }}
+        <a type="submit" class="btn btn-primary" href="{{ path('app_logout') }}">Se deconnecter</a>
+
+    {% else %}
+        <a type="submit" class="btn btn-primary" href="{{ path('app_login') }}">Se connecter</a>
+        <a type="submit" class="btn btn-primary" href="{{ path('app_register') }}">S'inscrire</a>
+    {% endif %}
 </div>
 {% endblock %}
