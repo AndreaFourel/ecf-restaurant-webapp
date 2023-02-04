@@ -2,9 +2,13 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\DailySchedule;
 use App\Entity\Meal;
 use App\Entity\MealCategory;
+use App\Entity\MealMenu;
+use App\Entity\Settings;
 use App\Entity\User;
+use App\Entity\WeekDay;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -47,12 +51,17 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Tableau de bord');
         yield MenuItem::linkToUrl('Page d\'accueil', 'fa fa-home', '/');
 
         yield MenuItem::section('La carte');
         yield MenuItem::linkToCrud('Les catégories', 'fa fa-folder-open', MealCategory::class);
         yield MenuItem::linkToCrud('Les plats', 'fa fa-bowl-food', Meal::class );
+        yield MenuItem::linkToCrud('Les menus', 'fa fa-shapes', MealMenu::class);
+
+        yield MenuItem::section('Gestion du restaurant');
+        yield MenuItem::linkToCrud('Détails du restaurant', 'fa fa-pen-nib', Settings::class);
+        yield MenuItem::linkToCrud('Jours de la semaine', 'fa fa-calendar-days', WeekDay::class);
+        yield MenuItem::linkToCrud('Plages horraires', 'fa fa-tag', DailySchedule::class);
 
         yield MenuItem::section('Gestion des utilisaterus')
             ->setPermission('ROLE_SUPER_ADMIN');
