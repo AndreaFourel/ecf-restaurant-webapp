@@ -4,6 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\Meal;
 use App\Entity\MealCategory;
+use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -11,9 +14,11 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class DashboardController extends AbstractDashboardController
 {
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
@@ -48,6 +53,11 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('La carte');
         yield MenuItem::linkToCrud('Les catégories', 'fa fa-folder-open', MealCategory::class);
         yield MenuItem::linkToCrud('Les plats', 'fa fa-bowl-food', Meal::class );
+
+        yield MenuItem::section('Gestion des utilisaterus')
+            ->setPermission('ROLE_SUPER_ADMIN');
+        yield MenuItem::linkToCrud('Les utilisaterus', 'fa-solid fa-users', User::class)
+            ->setPermission('ROLE_SUPER_ADMIN');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 
@@ -58,4 +68,10 @@ class DashboardController extends AbstractDashboardController
             ->showEntityActionsInlined()
             ->setSearchFields(null);
     }
+
+    public function configureActions(): Actions
+    {
+        return parent::configureActions()->setPermission(Action::BATCH_DELETE, 'ROLE_SUPER_ADMIN');
+    }
+
 }
