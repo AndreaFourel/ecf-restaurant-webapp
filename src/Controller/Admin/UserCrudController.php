@@ -21,6 +21,8 @@ class UserCrudController extends AbstractCrudController
         $roles = ['ROLE_SUPER_ADMIN', 'ROLE_ADMIN', 'ROLE_USER'];
 
         yield EmailField::new('email', 'Email');
+        yield TextField::new('firstName', 'Prénom');
+        yield TextField::new('allergyList', 'Allergies alimentaires');
         yield ChoiceField::new('roles', 'Rôles')
             //create an array where $roles items are both the keys and the values
             ->setChoices(array_combine($roles, $roles))
