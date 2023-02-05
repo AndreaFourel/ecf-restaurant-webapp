@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use function MongoDB\BSON\toJSON;
 
 #[ORM\Entity(repositoryClass: DailyScheduleRepository::class)]
 class DailySchedule
@@ -86,5 +87,19 @@ class DailySchedule
         return $this;
     }
 
+    public function getDaysName(): array
+    {
+        $daysName = [];
+        $weekDays = $this->getWeekDays();
+        foreach ($weekDays as $day){
+            $daysName[]= $day->getTitle();
+        }
+        return $daysName;
+    }
+
+   /* public function __toString()
+    {
+        return $this->openingTime->format('H:i') . $this->closingTime->format('H:i');
+    }*/
 
 }

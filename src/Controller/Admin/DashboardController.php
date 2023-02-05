@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\DailySchedule;
+use App\Entity\ImageGallery;
 use App\Entity\Meal;
 use App\Entity\MealCategory;
 use App\Entity\MealMenu;
@@ -57,6 +58,9 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Les catégories', 'fa fa-folder-open', MealCategory::class);
         yield MenuItem::linkToCrud('Les plats', 'fa fa-bowl-food', Meal::class );
         yield MenuItem::linkToCrud('Les menus', 'fa fa-shapes', MealMenu::class);
+
+        yield MenuItem::section('Gallerie d\'images');
+        yield MenuItem::linkToCrud('Nos plats en image', 'fa fa-image', ImageGallery::class);
 
         yield MenuItem::section('Gestion du restaurant');
         yield MenuItem::linkToCrud('Détails du restaurant', 'fa fa-pen-nib', Settings::class);

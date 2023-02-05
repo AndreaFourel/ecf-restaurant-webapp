@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Meal;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -31,6 +32,13 @@ class MealCrudController extends AbstractCrudController
             ->add('mealCategory')
             ->add('title')
             ->add('description');
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setPageTitle(Crud::PAGE_INDEX, 'Les Plats')
+            ->setEntityLabelInSingular('un plat');
     }
 
 }

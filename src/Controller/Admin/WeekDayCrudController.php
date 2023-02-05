@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\WeekDay;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -20,4 +21,10 @@ class WeekDayCrudController extends AbstractCrudController
         yield TextField::new('title', 'Jour de la semaine');
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setPageTitle(Crud::PAGE_INDEX, 'Jours de la semaine')
+            ->setEntityLabelInSingular('un jour');
+    }
 }

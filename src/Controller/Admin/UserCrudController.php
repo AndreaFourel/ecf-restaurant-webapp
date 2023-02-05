@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
@@ -32,6 +33,13 @@ class UserCrudController extends AbstractCrudController
             // all values are rendered with the same badge style (Bootstrap's ' secondary' style)
             ->renderAsBadges();
         yield TextField::new('password', 'Mot de passe')->onlyWhenCreating();
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setPageTitle(Crud::PAGE_INDEX, 'Les utilisateurs')
+            ->setEntityLabelInSingular('un utilisateur');
     }
 
 }
