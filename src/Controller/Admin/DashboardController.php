@@ -60,7 +60,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Les menus', 'fa fa-shapes', MealMenu::class);
 
         yield MenuItem::section('Gallerie d\'images');
-        yield MenuItem::linkToCrud('Nos plats en image', 'fa fa-image', ImageGallery::class);
+        yield MenuItem::linkToCrud('Toutes les images', 'fa fa-image', ImageGallery::class);
 
         yield MenuItem::section('Gestion du restaurant');
         yield MenuItem::linkToCrud('Détails du restaurant', 'fa fa-pen-nib', Settings::class);
