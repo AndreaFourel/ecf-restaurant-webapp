@@ -97,9 +97,4 @@ class DailySchedule
         return $daysName;
     }
 
-   /* public function __toString()
-    {
-        return $this->openingTime->format('H:i') . $this->closingTime->format('H:i');
-    }*/
-
 }

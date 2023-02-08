@@ -22,6 +22,9 @@ class WeekDay
     #[ORM\JoinTable(name: 'week_day_daily_schedule')]
     private Collection $dailySchedule;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $open = null;
+
     public function __construct()
     {
         $this->dailySchedule = new ArrayCollection();
@@ -71,5 +74,17 @@ class WeekDay
     public function __toString()
     {
         return $this->title;
+    }
+
+    public function isOpen(): ?bool
+    {
+        return $this->open;
+    }
+
+    public function setOpen(?bool $open): self
+    {
+        $this->open = $open;
+
+        return $this;
     }
 }

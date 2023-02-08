@@ -18,72 +18,12 @@
     </head>
     <body>
         {% block header %}
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">
-                        {#<img src="{{ asset('images/logo-quai-antique.png') }}" alt="Logo" width="100" height="30" class="d-inline-block align-text-top">#}
-                        MyRestaurant
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{ path('app_homepage') }}">Page d'accueil</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Carte & Menus</a>
-                            </li>
-                            {% if is_granted('ROLE_USER') %}
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Mon compte</a>
-                                </li>
-                            {% endif %}
-                            {% if is_granted('ROLE_ADMIN')  %}
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ path('admin') }}">Admin</a>
-                                </li>
-                            {% endif %}
-                        </ul>
-                        <div>
-                            {% if app.user %}
-                                <a type="submit" class="btn btn-sm btn-outline-secondary me-3 ms-2" href="{{ path('app_logout') }}">Se deconnecter</a>
-
-                            {% else %}
-                                <a type="submit" class="btn btn-sm btn-outline-secondary me-2" href="{{ path('app_login') }}">Se connecter</a>
-                                <a type="submit" class="btn btn-sm btn-outline-secondary me-3" href="{{ path('app_register') }}">Créer un compte</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            </nav>
+            {{ include('layout_fragments/_header.html.twig') }}
         {% endblock %}
         {% block body %}{% endblock %}
         {% block footer %}
-            <div class="container-fluid">
-                <div class="footer">
-                    <div class="schedule">
-                        <p>Horraires d'ouverture: </p>
-                    </div>
-                    <div class="socials">
-                        <a class="social-link" href="#">
-                            <i class="bi bi-facebook"></i>
-                        </a>
-                        <a class="social-link" href="#">
-                            <i class="bi bi-instagram"></i>
-                        </a>
-                        <a class="social-link" href="#">
-                            <i class="bi bi-envelope"></i>
-                        </a>
-                        <a class="social-link" href="tel:#">
-                            <i class="bi bi-phone"></i>
-                        </a>
-                    </div>
-                </div>
-                <p class="copyright">Design&Dev <a class="af-link" href="https://www.linkedin.com/in/andr%C3%A9a-fourel-1a3812109/">Andréa Fourel</a></p>
-                <p class="mentions-legales"><a class="af-link" href="#">Mentions légales</a></p>
-            </div>
+            {{ render(controller('App\\Controller\\FooterController::displaySchedule')) }}
         {% endblock %}
+
     </body>
 </html>
