@@ -2,32 +2,55 @@
 
 
 
-/*layout_fragments*/
+/*footer*/
 
 .simple-link {
-    color: grey;
+    color: #1f1d1d;
     text-decoration: none;
 }
+
 
 .simple-link:hover {
     color: darkgreen;
 }
 
-.copyright {
-    color: grey;
-    font-size: 0.9rem;
-}
-
-.mentions-legales {
-    color: grey;
-    font-size: 0.9rem;
-}
-
-
 .social-link{
-    color: grey;
+    color: #1f1d1d;
 }
 
 .social-link:hover {
     color: darkgreen;
+}
+
+/*carousel*/
+
+.carousel-wrapper {
+    width: 100%;
+}
+
+@media screen and (min-width: 576px){
+    .carousel-wrapper {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 992px){
+    .simple-link {
+        display: block;
+    }
+    .link-pipe {
+        display: none;
+    }
+
+}
+
+@media screen and (min-width: 1200px){
+    .carousel-wrapper {
+        width: 25%;
+    }
+
+}
+
+.footer{
+    background: darkorange;
 }
