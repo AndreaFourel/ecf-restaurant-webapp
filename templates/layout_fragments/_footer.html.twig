@@ -1,9 +1,9 @@
 <div class="container-fluid footer mt-3">
     <div class="row">
         <div class="col-12 col-sm-6 col-lg-3">
-            <h4 class="my-3 py-3 px-xl-5">Horraires d'ouverture: </h4>
+            <h4 id="h4"  class="my-3 py-3 px-sm-3 px-xl-5">Horraires d'ouverture: </h4>
             {% for day in weekDays %}
-                <div class="schedule-wrapper d-flex justify-content-between px-xl-5">
+                <div class="schedule-wrapper d-flex justify-content-between px-sm-3 px-xl-5">
                     <div class="px-1">
                         {{ day.title }}:
                     </div>
@@ -21,8 +21,8 @@
                 </div>
             {% endfor %}
         </div>
-        <div class="col-12 col-sm-6 col-lg-6 text-sm-center">
-            <h4 class="my-3 py-3">La Bouche D Gouts</h4>
+        <div class="col-12 col-sm-6 text-sm-center">
+            <h4 id="h4" class="my-3 py-3">La Bouche D Gouts</h4>
             <adress class="my-3 py-3">{{ address.value }}</adress>
             <p class="my-3 py-3">{{ phoneNumber.value }}</p>
             <a class="social-link me-3 my-3 py-3 text-decoration-none" href="">
@@ -40,7 +40,7 @@
         </div>
         <div class="col-12 col-sm-12 col-lg-3 text-sm-center text-lg-start">
             <div class="py-3 mt-3">
-                <h4 class="">Liens:</h4>
+                <h4 id="h4"  class="">Liens:</h4>
                 <a class="simple-link py-3" href="{{ path('app_homepage') }}">Page d'accueil</a>
                 <span class="link-pipe">|</span>
                 <a class="simple-link py-3" href="#">Carte & Menus</a>
