@@ -19,9 +19,10 @@
         {% endblock %}
     </head>
     <body>
-        {% block header %}
-            {{ include('layout_fragments/_header.html.twig') }}
+        {% block navbar %}
+            {{ include('layout_fragments/_navbar.html.twig') }}
         {% endblock %}
+        {% block header %}{% endblock %}
         {% block body %}{% endblock %}
         {% block footer %}
             {{ render(controller('App\\Controller\\FooterController::displaySchedule')) }}

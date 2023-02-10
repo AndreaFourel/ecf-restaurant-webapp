@@ -1,7 +1,7 @@
-<div class="container-fluid footer mt-3">
+<div class="container-fluid footer">
     <div class="row">
         <div class="col-12 col-sm-6 col-lg-3">
-            <h4 id="h4"  class="my-3 py-3 px-sm-3 px-xl-5">Horraires d'ouverture: </h4>
+            <h4 class="my-3 py-3 px-sm-3 px-xl-5">Horraires d'ouverture: </h4>
             {% for day in weekDays %}
                 <div class="schedule-wrapper d-flex justify-content-between px-sm-3 px-xl-5">
                     <div class="px-1">
@@ -21,8 +21,8 @@
                 </div>
             {% endfor %}
         </div>
-        <div class="col-12 col-sm-6 text-sm-center">
-            <h4 id="h4" class="my-3 py-3">La Bouche D Gouts</h4>
+        <div class="col-12 col-sm-6 text-center">
+            <img class="d-block m-auto  my-5" src="{{ asset('images/Logo.png') }}" width="200" height="200" alt="">
             <adress class="my-3 py-3">{{ address.value }}</adress>
             <p class="my-3 py-3">{{ phoneNumber.value }}</p>
             <a class="social-link me-3 my-3 py-3 text-decoration-none" href="">
@@ -37,10 +37,11 @@
             <a class="social-link m-3 py-3 text-decoration-none" href="tel:+33{{ phoneNumber.value }}">
                 <i class="bi bi-phone"></i>
             </a>
+
         </div>
-        <div class="col-12 col-sm-12 col-lg-3 text-sm-center text-lg-start">
+        <div class="col-12 col-sm-12 col-lg-3 text-center text-lg-start">
             <div class="py-3 mt-3">
-                <h4 id="h4"  class="">Liens:</h4>
+                <h4 class="">Liens utiles:</h4>
                 <a class="simple-link py-3" href="{{ path('app_homepage') }}">Page d'accueil</a>
                 <span class="link-pipe">|</span>
                 <a class="simple-link py-3" href="#">Carte & Menus</a>
