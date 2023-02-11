@@ -25,6 +25,11 @@ html{
 
 }
 
+.big-text {
+    font-size: 1.2rem;
+    font-weight: bolder;
+}
+
 /*navbar*/
 .navbar {
     background: var(--main-bg-color);
@@ -94,7 +99,7 @@ main, .user-action {
 
 /*carousel*/
 .carousel-title{
-    color: var(--second-bg-color);
+    color: var(--main-bg-color);
     font-size: 2rem;
     font-weight: bolder;
 }
@@ -155,7 +160,9 @@ main, .user-action {
     color: var(--text-light-color);
 }
 
-
+.footer-title {
+    font-size: 1.8rem;
+}
 
 @media screen and (min-width: 576px){
     .carousel-wrapper {
