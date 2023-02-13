@@ -59,17 +59,17 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Les plats', 'fa fa-bowl-food', Meal::class );
         yield MenuItem::linkToCrud('Les menus', 'fa fa-shapes', MealMenu::class);
 
-        yield MenuItem::section('Gallerie d\'images');
+        yield MenuItem::section('Galerie d\'images');
         yield MenuItem::linkToCrud('Toutes les images', 'fa fa-image', ImageGallery::class);
 
         yield MenuItem::section('Gestion du restaurant');
         yield MenuItem::linkToCrud('Détails du restaurant', 'fa fa-pen-nib', Settings::class);
         yield MenuItem::linkToCrud('Jours de la semaine', 'fa fa-calendar-days', WeekDay::class);
-        yield MenuItem::linkToCrud('Plages horraires', 'fa fa-tag', DailySchedule::class);
+        yield MenuItem::linkToCrud('Plages horaires', 'fa fa-tag', DailySchedule::class);
 
-        yield MenuItem::section('Gestion des utilisaterus')
+        yield MenuItem::section('Gestion des utilisateurs')
             ->setPermission('ROLE_SUPER_ADMIN');
-        yield MenuItem::linkToCrud('Les utilisaterus', 'fa-solid fa-users', User::class)
+        yield MenuItem::linkToCrud('Les utilisateurs', 'fa-solid fa-users', User::class)
             ->setPermission('ROLE_SUPER_ADMIN');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }

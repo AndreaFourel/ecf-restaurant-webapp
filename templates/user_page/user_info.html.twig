@@ -1,9 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello UserController!{% endblock %}
-{% block header %}
-    {{ include('layout_fragments/_header.html.twig') }}
-{% endblock %}
 {% block body %}
 <main>
     <section class="container-fluid py-5">
@@ -18,7 +15,7 @@
                     {% if user.firstName %}
                     {{ user.firstName }}
                     {% else %}
-                    {{ user.userIdentifier }}
+                    Faites nous connaître votre prénom.
                     {% endif %}
                 </td>
 

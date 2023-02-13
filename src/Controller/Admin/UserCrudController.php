@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class UserCrudController extends AbstractCrudController
@@ -24,6 +25,7 @@ class UserCrudController extends AbstractCrudController
         yield EmailField::new('email', 'Email');
         yield TextField::new('firstName', 'Prénom');
         yield TextField::new('allergyList', 'Allergies alimentaires');
+        yield NumberField::new('guestQuantity', 'Nombre de convives');
         yield ChoiceField::new('roles', 'Rôles')
             //create an array where $roles items are both the keys and the values
             ->setChoices(array_combine($roles, $roles))
