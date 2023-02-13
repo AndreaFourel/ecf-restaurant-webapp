@@ -3,25 +3,35 @@
 {% block title %}Créer un compte{% endblock %}
 
 {% block body %}
+<main>
     <section class="container-fluid user-action py-5 px-4 d-flex justify-content-center">
         <div class="container user-form">
             <h2 class="ms-3 mb-4 form-title">Créez un compte</h2>
-                <div class="mt-3 p-3">
-                    {{ form_start(registrationForm) }}
-                        {{ form_row(registrationForm.email, {
-                            label: 'Email'
-                        }) }}
-                        {{ form_row(registrationForm.plainPassword, {
-                            label: 'Mot de Passe'
-                        }) }}
-                        {{ form_row(registrationForm.agreeTerms, {
-                            label: 'Acceptez'
-                        }) }}
+            <div class="mt-3 p-3">
+                {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm.email, {
+                    label: 'Email'
+                }) }}
+                {{ form_row(registrationForm.firstName, {
+                    label: 'Prénom'
+                }) }}
+                {{ form_row(registrationForm.allergyList, {
+                    label: 'Allergies allimentaire connues (pour vous et vos convives)'
+                }) }}
+                {{ form_row(registrationForm.guestQuantity, {
+                    label: 'Nombre habituel de convives'
+                }) }}
+                {{ form_row(registrationForm.plainPassword, {
+                    label: 'Mot de Passe'
+                }) }}
+                {{ form_row(registrationForm.agreeTerms, {
+                    label: 'Acceptez'
+                }) }}
 
-                        <button type="submit" class="btn btn-lg btn-form my-3 mt-5">Créez un compte</button>
-                    {{ form_end(registrationForm) }}
-                </div>
+                <button type="submit" class="btn btn-lg btn-form my-3 mt-5">Créez un compte</button>
+                {{ form_end(registrationForm) }}
             </div>
+        </div>
     </section>
-
+</main>
 {% endblock %}
