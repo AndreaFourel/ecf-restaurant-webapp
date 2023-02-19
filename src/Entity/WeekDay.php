@@ -6,6 +6,7 @@ use App\Repository\WeekDayRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: WeekDayRepository::class)]
 class WeekDay
@@ -16,13 +17,16 @@ class WeekDay
     private ?int $id = null;
 
     #[ORM\Column(length: 20)]
+    #[Groups(['getWeekDays'])]
     private ?string $title = null;
 
     #[ORM\ManyToMany(targetEntity: DailySchedule::class, inversedBy: 'weekDays')]
     #[ORM\JoinTable(name: 'week_day_daily_schedule')]
+    #[Groups(['getWeekDays'])]
     private Collection $dailySchedule;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['getWeekDays'])]
     private ?bool $open = null;
 
     public function __construct()

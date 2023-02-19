@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use function MongoDB\BSON\toJSON;
 
 #[ORM\Entity(repositoryClass: DailyScheduleRepository::class)]
@@ -18,9 +19,11 @@ class DailySchedule
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+    #[Groups(['getWeekDays'])]
     private ?\DateTimeInterface $openingTime = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+    #[Groups(['getWeekDays'])]
     private ?\DateTimeInterface $closingTime = null;
 
     #[ORM\ManyToMany(targetEntity: WeekDay::class, mappedBy: 'dailySchedule')]

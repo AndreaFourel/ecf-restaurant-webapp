@@ -47,7 +47,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('My Restaurant');
+            ->setTitle('La Bouche Des Goûts');
     }
 
     public function configureMenuItems(): iterable
@@ -55,17 +55,17 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToUrl('Page d\'accueil', 'fa fa-home', '/');
 
         yield MenuItem::section('La carte');
-        yield MenuItem::linkToCrud('Les catégories', 'fa fa-folder-open', MealCategory::class);
+        yield MenuItem::linkToCrud('Les catégories', 'fa fa fa-tags', MealCategory::class);
         yield MenuItem::linkToCrud('Les plats', 'fa fa-bowl-food', Meal::class );
-        yield MenuItem::linkToCrud('Les menus', 'fa fa-shapes', MealMenu::class);
+        yield MenuItem::linkToCrud('Les menus', 'fa fa-clipboard-list', MealMenu::class);
 
         yield MenuItem::section('Galerie d\'images');
         yield MenuItem::linkToCrud('Toutes les images', 'fa fa-image', ImageGallery::class);
 
         yield MenuItem::section('Gestion du restaurant');
-        yield MenuItem::linkToCrud('Détails du restaurant', 'fa fa-pen-nib', Settings::class);
+        yield MenuItem::linkToCrud('Détails du restaurant', 'fa fa-cog', Settings::class);
         yield MenuItem::linkToCrud('Jours de la semaine', 'fa fa-calendar-days', WeekDay::class);
-        yield MenuItem::linkToCrud('Plages horaires', 'fa fa-tag', DailySchedule::class);
+        yield MenuItem::linkToCrud('Plages horaires', 'fa fa-clock', DailySchedule::class);
 
         yield MenuItem::section('Gestion des utilisateurs')
             ->setPermission('ROLE_SUPER_ADMIN');

@@ -36,6 +36,14 @@ h1, h2, h3, h4 {
     font-weight: bolder;
 }
 
+.hideDiv {
+    display: none;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
 /*navbar*/
 .navbar {
     background: var(--main-bg-color);
