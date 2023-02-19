@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class WeekDayController extends AbstractController
 {
-    #[Route('/api/weekDays', name: 'app_weekDays', methods: ['GET'])]
+    #[Route('/api/weekDays', name: 'app_weekDays_api', methods: ['GET'])]
     public function getWeekDays(WeekDayRepository $weekDayRepository):JsonResponse
     {
         $weekDays = $weekDayRepository->findAll();

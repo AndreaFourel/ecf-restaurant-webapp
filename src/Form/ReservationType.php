@@ -42,6 +42,7 @@ class ReservationType extends AbstractType
                 'widget' => 'single_text',
                 'attr' => [
                     'class' => 'form-control my-3',
+                    'min' => (new \DateTime('now'))->format('Y-m-d'),
                 ],
             ])
             ->add('reservationTime', TextType::class, [

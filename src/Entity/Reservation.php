@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ReservationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
@@ -27,6 +28,7 @@ class Reservation
     private ?string $allergyList = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups(['getReservations'])]
     private ?\DateTimeInterface $reservationDay = null;
 
     #[ORM\Column]
@@ -36,6 +38,7 @@ class Reservation
     private ?User $user = null;
 
     #[ORM\Column(length: 5)]
+    #[Groups(['getReservations'])]
     private ?string $reservationTime = null;
 
     public function getId(): ?int
