@@ -16,7 +16,7 @@ class UserPageController extends AbstractController
     {
         $user = $this->getUser();
         return $this->render('user_page/user_info.html.twig', [
-            'controller_name' => 'UserPageController',
+            'title' => 'Mon compte',
             'user' => $user,
         ]);
     }

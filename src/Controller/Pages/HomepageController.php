@@ -16,7 +16,7 @@ class HomepageController extends AbstractController
         $images = $repository->findAll();
         //dd($images);
         return $this->render('homepage/index.html.twig', [
-            'controller_name' => 'HomepageController',
+            'title' => 'La Bouche D\'Egoûts',
             'images' => $images
         ]);
     }

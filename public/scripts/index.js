@@ -1,7 +1,6 @@
 let links, navigationBar, currentLocation;
 
 function initialize () {
-
     links = document.querySelectorAll('.nav-link');
     navigationBar = document.getElementById('my-navbar');
     currentLocation = location.href;
@@ -11,11 +10,6 @@ function initialize () {
     };
 
     dynamicLinks();
-
-    console.log(currentLocation)
-    console.log(navigationBar);
-    console.log(links);
-    console.log('hello');
 }
 
 const dynamicLinks = () => {
@@ -26,8 +20,6 @@ const dynamicLinks = () => {
         }
     }
 }
-
-
 
 const scrollFunction = () => {
     if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {

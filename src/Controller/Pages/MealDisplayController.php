@@ -20,7 +20,7 @@ class MealDisplayController extends AbstractController
         $mealMenu = $doctrine->getRepository(MealMenu::class)->findAll();
         //dd($meals);
         return $this->render('meal_display/meal_display.html.twig', [
-            'controller_name' => 'MealDisplayController',
+            'title' => 'Carte et Menus',
             'mealCategories' => $mealCategories,
             'meals' => $meals,
             'mealMenu' => $mealMenu,

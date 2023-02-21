@@ -165,6 +165,12 @@ tr {
     border-color: var(--text-light-color);
 }
 
+/*reservation*/
+
+.reservation-txt {
+    color: var(--main-bg-color);
+}
+
 /*user-action*/
 
 .user-action {

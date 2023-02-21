@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+
+{% block body %}
+    <main class="py-3 container-fluid">
+        <section class="m-auto mt-3">
+            <article class="mt-5">
+                <h2 class="carousel-title text-center py-2 py-md-3 mb-md-3">Votre reservation a bien été enregistrée!</h2>
+                <h3 class="carousel-title text-center py-2 py-md-3 mb-md-3">Le chef Râ des Goûts et sa brigade vous remercient!</h3>
+                <div class="d-flex justify-content-center my-5">
+                    <div>
+                        {% if app.user %}
+                            <p class="reservation-txt text-center py-2 py-md-3 mb-md-3">Contents de vous revoir {{ app.user.email }}</p>
+
+                        {% else %}
+                            <h2 class="reservation-txt">Conseils du chef:</h2>
+                            <p class="reservation-txt">Pour faciliter vos prochaines réservations, connectez-vous à votre compte.</p>
+                            <p class="reservation-txt">Si vous n'avez pas encore un compte, suivez ce lien ci-dessous:</p>
+                            <a type="submit" class="btn btn-sm btn-form" href="{{ path('app_register') }}">Créer un compte</a>
+                        {% endif %}
+                </div>
+
+            </article>
+        </section>
+    </main>
+
+{% endblock %}

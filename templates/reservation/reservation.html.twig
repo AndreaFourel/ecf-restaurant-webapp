@@ -1,13 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ReservationController!{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block body %}
     <main>
         <section class="container-fluid user-action py-5 px-4 d-flex justify-content-center">
             <div class="container user-form">
+                <spam id="max-capacity" class="hidden">{{ settings.value }}</spam>
                 <h2 class="ms-3 mb-4 form-title">Réserver une table</h2>
                 <div class="mt-3 p-3">
+                    {% if app.user %}
+                        <h5 class="mb-3">Bonjour {{ app.user.email }}</h5>
+                        {% if app.user.guestQuantity %}
+                            <div class="userChoices">
+                                <span class="userDefaultChoice">{{ app.user.guestQuantity }} </span>
+                                <span>couverts, comme d'habitude?</span>
+
+                                <div class="form-check mt-3">
+                                    <input class="form-check-input" type="radio" name="{{ app.user.guestQuantity }}" id="setUserDefaultChoice">
+                                    <label class="form-check-label" for="setUserDefaultChoice">
+                                        Oui
+                                    </label>
+                                </div>
+                                <div class="form-check mt-2 mb-4">
+                                    <input class="form-check-input" type="radio" name="radioNew" id="userNewChoice">
+                                    <label class="form-check-label" for="userNewChoice">
+                                        Non, pas cette fois
+                                    </label>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endif %}
 
                     {{ form_start(reservationForm) }}
                     {{ form_row(reservationForm.guestQuantity, {
@@ -77,9 +100,10 @@
                         }) }}
                     </div>
 
+
                     <div class="hideDiv secondary-display">
                         {{ form_row(reservationForm.email, {
-                            label: 'Email'
+                            label: 'Email',
                         }) }}
                         {{ form_row(reservationForm.firstName, {
                             label: 'Prénom'
@@ -90,11 +114,12 @@
                     </div>
 
 
+
                     <button type="submit" class="hideDiv btn btn-lg btn-form my-3 mt-5 reservation-btn">Réserver</button>
                     {{ form_end(reservationForm) }}
                 </div>
 
-
+                <div class="usefully-data hidden"></div>
             </div>
         </section>
     </main>

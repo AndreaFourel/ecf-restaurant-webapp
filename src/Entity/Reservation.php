@@ -22,6 +22,7 @@ class Reservation
     private ?string $firstName = null;
 
     #[ORM\Column]
+    #[Groups(['getReservations'])]
     private ?int $guestQuantity = null;
 
     #[ORM\Column(length: 255, nullable: true)]

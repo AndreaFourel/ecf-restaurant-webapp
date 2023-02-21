@@ -7,6 +7,7 @@ use App\Entity\ImageGallery;
 use App\Entity\Meal;
 use App\Entity\MealCategory;
 use App\Entity\MealMenu;
+use App\Entity\Reservation;
 use App\Entity\Settings;
 use App\Entity\User;
 use App\Entity\WeekDay;
@@ -30,7 +31,7 @@ class DashboardController extends AbstractDashboardController
         // Option 1. You can make your dashboard redirect to some common page of your backend
         //
         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        return $this->redirect($adminUrlGenerator->setController(MealCrudController::class)->generateUrl());
+        return $this->redirect($adminUrlGenerator->setController(ReservationCrudController::class)->generateUrl());
 
         // Option 2. You can make your dashboard redirect to different pages depending on the user
         //
@@ -53,6 +54,9 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToUrl('Page d\'accueil', 'fa fa-home', '/');
+
+        yield MenuItem::section('Gestion des Réservations');
+        yield MenuItem::linkToCrud('Les Réservations', 'fa fa-utensils', Reservation::class);
 
         yield MenuItem::section('La carte');
         yield MenuItem::linkToCrud('Les catégories', 'fa fa fa-tags', MealCategory::class);
