@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -22,7 +23,8 @@ class MealCrudController extends AbstractCrudController
     {
         yield TextField::new('title', 'Nom du plat');
         yield TextareaField::new('description', 'Description');
-        yield MoneyField::new('price', 'Prix')->setCurrency('EUR');
+        //yield MoneyField::new('price', 'Prix')->setCurrency('EUR')->setNumDecimals(2);
+        yield NumberField::new('price', 'Prix')->setNumDecimals(2);
         yield AssociationField::new('mealCategory', 'Catégorie')->renderAsNativeWidget();
     }
 

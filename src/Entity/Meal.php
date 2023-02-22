@@ -19,7 +19,7 @@ class Meal
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: "decimal", precision: 5, scale: 2)]
     private ?float $price = null;
 
     #[ORM\ManyToOne(inversedBy: 'meals')]

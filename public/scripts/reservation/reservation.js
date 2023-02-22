@@ -26,6 +26,21 @@ reservationGuestQuantity.addEventListener('change', () => {
     reservationGuestQuantity.setAttribute('disabled', 'true');
 })
 
+const loadEnv = async () => {
+    try {
+        const response = await  fetch(`config/.env`)
+        const data = await response.json();
+        if(!response.ok) {
+            console.log(response.status);
+            return;
+        }
+        console.log(data);
+    } catch(e) {
+        console.log(e)
+    }
+}
+loadEnv()
+
 const checkPlaces = async () => {
     try {
         const response = await  fetch(`${API_HOST}/reservations`)

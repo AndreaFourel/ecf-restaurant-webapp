@@ -4,6 +4,7 @@ namespace App\Controller\Pages;
 
 use App\Form\UserUpdateFormType;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +16,7 @@ class UserPageController extends AbstractController
     public function index(): Response
     {
         $user = $this->getUser();
+
         return $this->render('user_page/user_info.html.twig', [
             'title' => 'Mon compte',
             'user' => $user,
