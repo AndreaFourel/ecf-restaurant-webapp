@@ -26,24 +26,24 @@ reservationGuestQuantity.addEventListener('change', () => {
     reservationGuestQuantity.setAttribute('disabled', 'true');
 })
 
-const loadEnv = async () => {
-    try {
-        const response = await  fetch(`config/.env`)
-        const data = await response.json();
-        if(!response.ok) {
-            console.log(response.status);
-            return;
-        }
-        console.log(data);
-    } catch(e) {
-        console.log(e)
-    }
-}
-loadEnv()
+// const loadEnv = async () => {
+//     try {
+//         const response = await  fetch(`config/.env`)
+//         const data = await response.json();
+//         if(!response.ok) {
+//             console.log(response.status);
+//             return;
+//         }
+//         console.log(data);
+//     } catch(e) {
+//         console.log(e)
+//     }
+// }
+// loadEnv()
 
 const checkPlaces = async () => {
-    try {
-        const response = await  fetch(`${API_HOST}/reservations`)
+    try {//`${API_HOST}/reservations`
+        const response = await  fetch('/labouchedesgouts/api/reservations')
         const data = await response.json();
         if(!response.ok) {
             console.log(response.status);
@@ -67,7 +67,6 @@ const checkPlaces = async () => {
         const hoursTab = cleanHours.map(e => {
             return [e[0].substring(0,2), e[1]];
         })
-       // console.log(hoursTab);
 
         const beforeMidiHours = hoursTab.filter((e) => {
             return e[0] < 17;
@@ -96,7 +95,6 @@ const checkPlaces = async () => {
             htmlContent += input
         })
         document.querySelector('.usefully-data').innerHTML = htmlContent;
-
     } catch (e) {
         console.log(e);
     }
@@ -126,8 +124,8 @@ const handleSchedule = async () => {
 
     let reservationDayName = dayNameField.textContent;
 
-    try {
-        const response = await fetch(`${API_HOST}/weekDays`);
+    try {//`${API_HOST}/weekDays`
+        const response = await fetch('/labouchedesgouts/api/weekDays');
         const data = await response.json();
 
         if(!response.ok) {
@@ -142,28 +140,43 @@ const handleSchedule = async () => {
             let schedules = apiDataForReservationDay.dailySchedule;
             reservationTimeOfDay.classList.remove('hideDiv');
             reservationDay.setAttribute('disabled', 'true');
+
             if(schedules.length === 1) {
                 document.querySelector('.day-available-places').classList.remove('hideDiv');
 
+                if((document.querySelector('.availableDayPlaces').value)*1 < (reservationGuestQuantity.value)*1) {
+                    reservationTime.setAttribute('disabled', 'true');
+                } else {
+                    reservationTime.removeAttribute('disabled');
+                }
             }
 
             if (schedules.length > 1) {
                 reservationTimeOfDay.classList.remove('hideDiv');
                 reservationMidi.addEventListener('click', () => {
-                    reservationTime.classList.remove('hideDiv');
-                    document.querySelector('.midi-available-places').classList.remove('hideDiv');
-                    let schedule = getFormatSchedule(schedules[0]);
-
-                    displayArrivalTimeDiv(schedule);
-
+                    if((reservationGuestQuantity.value)*1 <= (document.querySelector('.midiAvailablePlaces').value)*1){
+                        reservationTime.classList.remove('hideDiv');
+                        document.querySelector('.midi-available-places').classList.remove('hideDiv');
+                        let schedule = getFormatSchedule(schedules[0]);
+                        displayArrivalTimeDiv(schedule);
+                    } else {
+                        reservationTime.setAttribute('disabled', 'true');
+                        reservationTime.classList.remove('hideDiv');
+                        document.querySelector('.midi-available-places').classList.remove('hideDiv');
+                    }
                 });
 
                 reservationSoir.addEventListener('click', () => {
-                    reservationTime.classList.remove('hideDiv');
-                    document.querySelector('.soir-available-places').classList.remove('hideDiv');
-                    let schedule = getFormatSchedule(schedules[1]);
-
-                    displayArrivalTimeDiv(schedule);
+                    if((reservationGuestQuantity.value)*1 <= (document.querySelector('.soirAvailablePlaces').value)*1){
+                        reservationTime.classList.remove('hideDiv');
+                        document.querySelector('.soir-available-places').classList.remove('hideDiv');
+                        let schedule = getFormatSchedule(schedules[1]);
+                        displayArrivalTimeDiv(schedule);
+                    } else {
+                        reservationTime.classList.remove('hideDiv');
+                        reservationTime.setAttribute('disabled', 'true');
+                        document.querySelector('.soir-available-places').classList.remove('hideDiv');
+                    }
                 })
 
             } else {
@@ -183,8 +196,11 @@ const handleSchedule = async () => {
     }
 };
 
-reservationDayRadioYes.addEventListener('click', handleSchedule);
+
 reservationDayRadioYes.addEventListener('click', checkPlaces);
+reservationDayRadioYes.addEventListener('click', handleSchedule);
+
+
 
 //
 reservationDayRadioNon.addEventListener('click', () => {
@@ -329,7 +345,6 @@ function getFormatSchedule (schedule) {
 // display select input with available reservation hours
 function displayArrivalTimeDiv (schedule) {
     let htmlDiv = '<option value="">Veuillez choisir une heure d\'arrivée</option>';
-    //console.log(schedule);
 
     schedule.forEach(element => {
         htmlDiv += '<option value="' + element + '" class="me-2 schedule-proposal">' + element + '</option>';

@@ -42,10 +42,10 @@ class ReservationRepository extends ServiceEntityRepository
 //    /**
 //     * @return Reservation[] Returns an array of Reservation objects
 //     */
-//    public function findByExampleField($value): array
+//    public function findAllByUser($value): array
 //    {
 //        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
+//            ->andWhere('r.email = :val')
 //            ->setParameter('val', $value)
 //            ->orderBy('r.id', 'ASC')
 //            ->setMaxResults(10)

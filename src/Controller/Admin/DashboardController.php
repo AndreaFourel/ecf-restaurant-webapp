@@ -53,6 +53,7 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
+
         yield MenuItem::linkToUrl('Page d\'accueil', 'fa fa-home', '/');
 
         yield MenuItem::section('Gestion des Réservations');

@@ -54,53 +54,25 @@
             </div>
         </article>
         <article class="mt-5">
-            <ul>
-            {% for key, reservation in user.reservations %}
-                {{ dump(key) }}
-            {% endfor %}
-            </ul>
             <table class="table m-auto">
                 <thead>
-                <h2 class="blue-title text-center mt-3 mb-5">Mes reservations passés</h2>
+                <h2 class="blue-title text-center mt-3 mb-5">Mes dernières réservations</h2>
+                <tr>
+                    <th scope="col" class="table-field-bold"></th>
+                    <th scope="col" class="table-field-bold text-center">Réservation effectuée le</th>
+                    <th scope="col" class="table-field-bold text-center">Date de réservation</th>
+                    <th scope="col" class="table-field-bold text-center">Nombre de convives</th>
+                </tr>
                 </thead>
-                <tbody class="m-5">
+                <tbody>
+                {% for reservation in reservations %}
                 <tr>
-                    <th class="table-field-bold" scope="row">Prénom:</th>
-                    <td class="table-field-italic">
-                        {% if user.firstName %}
-                            {{ user.firstName }}
-                        {% else %}
-                            Faites nous connaître votre prénom.
-                        {% endif %}
-                    </td>
-
+                    <th scope="row">{{ loop.index }}</th>
+                    <td class="table-field-italic text-center">{{ reservation.createdAt|format_datetime(locale='fr',pattern="dd MMMM YYYY") }}</td>
+                    <td class="table-field-italic text-center">{{ reservation.reservationDay|format_datetime(locale='fr',pattern="EEEE dd MMMM YYYY") }}</td>
+                    <td class="table-field-italic text-center">{{ reservation.guestQuantity }}</td>
                 </tr>
-                <tr>
-                    <th class="table-field-bold" scope="row">Email:</th>
-                    <td class="table-field-italic">{{ user.userIdentifier }}</td>
-
-                </tr>
-                <tr>
-                    <th class="table-field-bold" scope="row">Allergies alimentaires:</th>
-                    <td class="table-field-italic">
-                        {% if user.allergyList %}
-                            {{ user.allergyList|capitalize }}
-                        {% else %}
-                            Faites nous connaître vos allérgies alimentaires ainsi que celles de vos convives habituels.
-                        {% endif %}
-                    </td>
-                </tr>
-                <tr>
-                    <th class="table-field-bold" scope="row">Nombre habituel de convives:</th>
-                    <td class="table-field-italic">
-                        {% if user.guestQuantity %}
-                            {{ user.guestQuantity|capitalize }}
-                        {% else %}
-                            Faites nous connaître votre nombre habituel de convives.
-                        {% endif %}
-
-                    </td>
-                </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </article>

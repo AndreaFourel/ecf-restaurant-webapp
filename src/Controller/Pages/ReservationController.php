@@ -49,6 +49,7 @@ class ReservationController extends AbstractController
         ]);
     }
 
+
     #[Route('/reservation/confirmation', name: 'app_reservation_confirmation')]
     public function confirmation(): Response
     {
