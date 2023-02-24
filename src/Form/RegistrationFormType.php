@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -14,6 +15,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Positive;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class RegistrationFormType extends AbstractType
 {
@@ -29,17 +32,34 @@ class RegistrationFormType extends AbstractType
                 'attr' => [
                     'class' => 'form-control my-3'
                 ],
+                'constraints' => [
+                    new Regex([
+                        'pattern'=> '^[a-zA-Z]+$^',
+                        'message' => 'Le prénom doit contenir que des lettres'
+                    ]),
+                ],
                 'required' => false
             ])
             ->add('allergyList', TextareaType::class, [
                 'attr' => [
                     'class' => 'form-control my-3'
                 ],
+                'constraints' => [
+                    new Regex([
+                        'pattern'=> '^[a-zA-Z]+$^',
+                        'message' => 'La liste d\'allergies peut contenir que des lettres'
+                    ]),
+                ],
                 'required' => false
             ])
-            ->add('guestQuantity', TextType::class, [
+            ->add('guestQuantity', IntegerType::class, [
                 'attr' => [
                     'class' => 'form-control my-3'
+                ],
+                'constraints' => [
+                    new Positive([
+                        'message' => 'Vous devez indiquer un entier positif'
+                    ]),
                 ],
                 'required' => false
             ])

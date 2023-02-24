@@ -19,31 +19,39 @@ const reservationTimeInputField = document.querySelector('#reservation_reservati
 const reservationGuestQuantity = document.querySelector('#reservation_guestQuantity');
 const maxCapacity = document.querySelector('#max-capacity').textContent;
 
-const API_HOST = 'https://127.0.0.1:8000/api';
+//const API_HOST = 'https://127.0.0.1:8000/api';
+let API_HOST;
+const loadEnv = async () => {
+    try {
+        const response = await  fetch(`config/.env`)
+        const data = await response.json();
+        if(!response.ok) {
+            console.log(response.status);
+            return;
+        }
 
+        API_HOST = data.API_HOST;
+
+
+    } catch(e) {
+        console.log(e)
+    }
+}
+window.addEventListener('load', loadEnv);
+
+//on change of number of guests input, show date of reservation input and disable number of guests input
 reservationGuestQuantity.addEventListener('change', () => {
     document.querySelector('.show-reservation-div').classList.remove('hideDiv');
     reservationGuestQuantity.setAttribute('disabled', 'true');
 })
 
-// const loadEnv = async () => {
-//     try {
-//         const response = await  fetch(`config/.env`)
-//         const data = await response.json();
-//         if(!response.ok) {
-//             console.log(response.status);
-//             return;
-//         }
-//         console.log(data);
-//     } catch(e) {
-//         console.log(e)
-//     }
-// }
-// loadEnv()
-
+//call API reservations
+//checks if the restaurant is open once or twice for the chosen date
+//checks available places for the chosen date
+//add available places inputs in hidden div outside the form
 const checkPlaces = async () => {
-    try {//`${API_HOST}/reservations`
-        const response = await  fetch('/labouchedesgouts/api/reservations')
+    try {//'/labouchedesgouts/api/reservations'
+        const response = await  fetch(`${API_HOST}/reservations`)
         const data = await response.json();
         if(!response.ok) {
             console.log(response.status);
@@ -119,13 +127,17 @@ reservationDay.addEventListener('change', (e) => {
 
 
 
-
+//call API weekDays
+//if restaurant is open, check if it's open once or twice, if not ask chose new data
+//show available places in every case
+//disable arrival hours select input in case the number of guest is > to available places
+//(using available places inputs in hidden div outside the form)
 const handleSchedule = async () => {
 
     let reservationDayName = dayNameField.textContent;
 
-    try {//`${API_HOST}/weekDays`
-        const response = await fetch('/labouchedesgouts/api/weekDays');
+    try {//'/labouchedesgouts/api/weekDays'
+        const response = await fetch(`${API_HOST}/weekDays`);
         const data = await response.json();
 
         if(!response.ok) {
@@ -196,13 +208,10 @@ const handleSchedule = async () => {
     }
 };
 
-
 reservationDayRadioYes.addEventListener('click', checkPlaces);
 reservationDayRadioYes.addEventListener('click', handleSchedule);
 
-
-
-//
+//reset to make new choice of reservation day
 reservationDayRadioNon.addEventListener('click', () => {
     reservationDay.removeAttribute('disabled');
     reservationTimeOfDay.classList.add('hideDiv');
@@ -212,6 +221,9 @@ reservationDayRadioNon.addEventListener('click', () => {
     document.querySelector('.day-available-places').classList.add('hideDiv');
 })
 
+//when the hour of arrival is chosen, set attribute selected on the chosen option
+//set the actual form input for arrival hour with the chosen option
+//show a validation radio
 reservationTime.addEventListener('change', ()=>{
     validation.classList.remove('hideDiv');
     reservationTime.options[reservationTime.options.selectedIndex].setAttribute('selected', 'selected');
@@ -220,7 +232,8 @@ reservationTime.addEventListener('change', ()=>{
 
 reservationTime.addEventListener('click', checkPlaces);
 
-
+//when validation radio is checked only display form inputs
+//show div with user personal infos
 validation.addEventListener('click', () => {
         formReservationTime.classList.remove('hideDiv');
         secondaryForm.classList.remove('hideDiv');
@@ -232,6 +245,7 @@ validation.addEventListener('click', () => {
         reservationTime.remove();
 })
 
+//enables all form fields
 reservationBtn.addEventListener('click', () => {
     reservationDay.removeAttribute('disabled');
     reservationTimeInputField.removeAttribute('disabled');
@@ -239,6 +253,7 @@ reservationBtn.addEventListener('click', () => {
 
 })
 
+//if user connected handle default choices
 if(document.querySelector('#setUserDefaultChoice')){
     document.querySelector('#setUserDefaultChoice').addEventListener('click', () => {
         reservationGuestQuantity.value = document.querySelector('#setUserDefaultChoice').name;
@@ -279,7 +294,7 @@ function getDayFromString(dateString) {
     }
 }
 
-//
+//format hour in case h:mm to 0h:00
 Date.prototype.getFullMinutes = function () {
     if (this.getMinutes() < 10) {
         return '0' + this.getMinutes();
@@ -291,7 +306,7 @@ function formatTimeObject(date) {
     return(date.getHours() + ':' +date.getFullMinutes());
 }
 
-//
+
 function addMinutes(date, minutes) {
     const dateCopy = new Date(date);
 
@@ -300,7 +315,7 @@ function addMinutes(date, minutes) {
     return dateCopy;
 }
 
-//
+
 function subtractMinutes(date, minutes) {
     // make copy with "Date" constructor
     const dateCopy = new Date(date);
@@ -310,7 +325,8 @@ function subtractMinutes(date, minutes) {
     return dateCopy;
 }
 
-//
+//format schedule array: return array of hours every 15min after opening time until closing time - 1h
+//handles case of a reservation during current day opening hours
 function getFormatSchedule (schedule) {
     let open = subtractMinutes(new Date(schedule.openingTime), 60);
     let close = subtractMinutes(new Date(schedule.closingTime), 120);
