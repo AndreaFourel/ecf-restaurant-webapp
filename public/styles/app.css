@@ -181,6 +181,11 @@ tr {
     font-size: 1.2rem;
 }
 
+.reservation-messages-text {
+    font_size: 1.2rem;
+    font-weight: 600;
+}
+
 /*user-action*/
 
 .user-action {

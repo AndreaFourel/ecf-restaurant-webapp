@@ -87,13 +87,13 @@ const checkPlaces = async () => {
         const midiAvailablePlaces = maxCapacity - totalOfDayReservations(beforeMidiHours);
         const soirAvailablePlaces = maxCapacity - totalOfDayReservations(afterMidiHours);
 
-        let htmlTextForDay = '<p class="mt-3">' + availableDayPlaces + ' places disponibles à cette date</p>'
+        let htmlTextForDay = '<p class="mt-3 reservation-messages-text">' + availableDayPlaces + ' places disponibles à cette date</p>'
         document.querySelector('.day-available-places').innerHTML = htmlTextForDay;
 
-        let htmlTextForMidi = '<p class="mt-3">' + midiAvailablePlaces + ' places disponibles pour ce créneaux</p>'
+        let htmlTextForMidi = '<p class="mt-3 reservation-messages-text">' + midiAvailablePlaces + ' places disponibles pour ce créneaux</p>'
         document.querySelector('.midi-available-places').innerHTML = htmlTextForMidi;
 
-        let htmlTextForSoir = '<p class="mt-3">' + soirAvailablePlaces + ' places disponibles pour ce créneaux</p>'
+        let htmlTextForSoir = '<p class="mt-3 reservation-messages-text">' + soirAvailablePlaces + ' places disponibles pour ce créneaux</p>'
         document.querySelector('.soir-available-places').innerHTML = htmlTextForSoir;
 
 
