@@ -217,6 +217,15 @@ tr {
     width: 90vw;
 }
 
+/*mentions-légales*/
+.sm-link{
+    font-size: 0.8rem;
+}
+
+.legals {
+    color: var(--main-bg-color);
+}
+
 
 /*footer*/
 

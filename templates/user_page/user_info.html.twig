@@ -32,7 +32,7 @@
                         {% if user.allergyList %}
                             {{ user.allergyList|capitalize }}
                         {% else %}
-                            Faites nous connaître vos allérgies alimentaires ainsi que celles de vos convives habituels.
+                            Faites nous connaître vos allergies alimentaires ainsi que celles de vos convives habituels.
                         {% endif %}
                     </td>
                 </tr>
@@ -59,8 +59,8 @@
                 <h2 class="blue-title text-center mt-3 mb-5">Mes dernières réservations</h2>
                 <tr>
                     <th scope="col" class="table-field-bold"></th>
-                    <th scope="col" class="table-field-bold text-center">Réservation effectuée le</th>
                     <th scope="col" class="table-field-bold text-center">Date de réservation</th>
+                    <th scope="col" class="table-field-bold text-center">Heure d'arrivée</th>
                     <th scope="col" class="table-field-bold text-center">Nombre de convives</th>
                 </tr>
                 </thead>
@@ -68,8 +68,8 @@
                 {% for reservation in reservations %}
                 <tr>
                     <th scope="row">{{ loop.index }}</th>
-                    <td class="table-field-italic text-center">{{ reservation.createdAt|format_datetime(locale='fr',pattern="dd MMMM YYYY") }}</td>
                     <td class="table-field-italic text-center">{{ reservation.reservationDay|format_datetime(locale='fr',pattern="EEEE dd MMMM YYYY") }}</td>
+                    <td class="table-field-italic text-center">{{ reservation.reservationTime }}</td>
                     <td class="table-field-italic text-center">{{ reservation.guestQuantity }}</td>
                 </tr>
                 {% endfor %}

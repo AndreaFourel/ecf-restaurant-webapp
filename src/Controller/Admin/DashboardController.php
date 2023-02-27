@@ -57,7 +57,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToUrl('Page d\'accueil', 'fa fa-home', $_ENV['HOME_PATH']);
 
         yield MenuItem::section('Gestion des Réservations');
-        yield MenuItem::linkToCrud('Les Réservations', 'fa fa-utensils', Reservation::class);
+        yield MenuItem::linkToCrud('Les Réservations', 'fa fa-utensils', Reservation::class)->setDefaultSort(['reservationDay'=>'ASC']);
 
         yield MenuItem::section('La carte');
         yield MenuItem::linkToCrud('Les catégories', 'fa fa fa-tags', MealCategory::class);
@@ -69,7 +69,7 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::section('Gestion du restaurant');
         yield MenuItem::linkToCrud('Détails du restaurant', 'fa fa-cog', Settings::class);
-        yield MenuItem::linkToCrud('Jours de la semaine', 'fa fa-calendar-days', WeekDay::class);
+        yield MenuItem::linkToCrud('Jours d\'ouverture et/ou fermeture du restaurant', 'fa fa-calendar-days', WeekDay::class);
         yield MenuItem::linkToCrud('Plages horaires', 'fa fa-clock', DailySchedule::class)->setDefaultSort(['openingTime' =>'ASC']);
 
         yield MenuItem::section('Gestion des utilisateurs')

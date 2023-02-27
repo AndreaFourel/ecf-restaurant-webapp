@@ -1,7 +1,7 @@
 <div class="container-fluid footer">
     <div class="row">
         <div class="col-12 col-sm-6 col-lg-3">
-            <h4 class="footer-title my-3 py-3 px-sm-3 px-xl-5">Horraires d'ouverture: </h4>
+            <h4 class="footer-title my-3 py-3 px-sm-3 px-xl-5">Horaires d'ouverture: </h4>
             {% for day in weekDays %}
                 <div class="schedule-wrapper d-flex justify-content-between px-sm-3 px-xl-5">
                     <div class="px-1">
@@ -9,6 +9,7 @@
                     </div>
                     <div class="px-1">
                         {% if day.open %}
+                            {# sort opening schedule asc order #}
                             {% for daySchedule in dailySchedule|sort((a,b)=>a.openingTime <=> b.openingTime) %}
                                 {% if day.title in daySchedule.weekDays %}
                                     <p>{{ daySchedule.openingTime|date('H:i') }} - {{ daySchedule.closingTime|date('H:i') }}</p>
@@ -24,6 +25,7 @@
         <div class="col-12 col-sm-6 text-center">
             <img class="d-block m-auto  my-5" src="{{ asset('images/Logo.png') }}" width="200" height="200" alt="">
             <p class="my-3 py-3">{{ phoneNumber.value }}</p>
+            <p class="my-3 py-3">{{ address.value }}</p>
             <a class="social-link me-3 my-3 py-3 text-decoration-none" href="">
                 <i class="bi bi-facebook"></i>
             </a>
@@ -49,7 +51,7 @@
                     <a class="simple-link py-3" href="{{ path('app_user_page') }}">Mon compte</a>
                 {% endif %}
                 <span class="link-pipe">|</span>
-                <a class="simple-link py-3" href="#">Mentions légales</a>
+                <a class="simple-link py-3" href="{{ path('app_legal') }}">Mentions légales</a>
             </div>
         </div>
     </div>
