@@ -9,7 +9,7 @@
                     </div>
                     <div class="px-1">
                         {% if day.open %}
-                            {% for daySchedule in dailySchedule %}
+                            {% for daySchedule in dailySchedule|sort((a,b)=>a.openingTime <=> b.openingTime) %}
                                 {% if day.title in daySchedule.weekDays %}
                                     <p>{{ daySchedule.openingTime|date('H:i') }} - {{ daySchedule.closingTime|date('H:i') }}</p>
                                 {% endif%}

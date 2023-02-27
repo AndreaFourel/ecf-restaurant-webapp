@@ -25,7 +25,8 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'attr' => [
-                    'class' => 'form-control my-3'
+                    'class' => 'form-control my-3',
+                    'autocomplete' => 'email',
                 ]
             ])
             ->add('firstName', TextType::class, [
@@ -35,7 +36,7 @@ class RegistrationFormType extends AbstractType
                 'constraints' => [
                     new Regex([
                         'pattern'=> '^[a-zA-Z]+$^',
-                        'message' => 'Le prénom doit contenir que des lettres'
+                        'message' => 'Le prénom ne peut contenir que des lettres'
                     ]),
                 ],
                 'required' => false

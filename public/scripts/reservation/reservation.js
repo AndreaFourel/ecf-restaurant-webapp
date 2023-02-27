@@ -1,25 +1,23 @@
 const reservationDay = document.querySelector('#reservation_reservationDay');
 const dayNameField = document.querySelector(".day-name-field");
-const dayField = document.querySelector('.day-field');
+//const dayField = document.querySelector('.day-field');
 const reservationDayRadioYes = document.querySelector('#reservationDayRadioYes');
-const reservationDayRadioNon = document.querySelector('#reservationDayRadioNon');
-const reservationMidi = document.querySelector('#reservationMidi');
-const reservationSoir =document.querySelector('#reservationSoir');
-
+//const reservationDayRadioNon = document.querySelector('#reservationDayRadioNon');
+//const reservationMidi = document.querySelector('#reservationMidi');
+//const reservationSoir =document.querySelector('#reservationSoir');
 const reservationDate = document.querySelector('#reservationDate');
 const reservationTimeOfDay =document.querySelector('#reservationTimeOfDay');
 const closeMessage = document.querySelector('.close-message');
-
 const reservationTime = document.querySelector('#reservationTime');
-const formReservationTime = document.querySelector('.form-reservation-time');
+//const formReservationTime = document.querySelector('.form-reservation-time');
 const validation = document.querySelector('#validation');
 const reservationBtn = document.querySelector('.reservation-btn');
-const secondaryForm = document.querySelector('.secondary-display');
+//const secondaryForm = document.querySelector('.secondary-display');
 const reservationTimeInputField = document.querySelector('#reservation_reservationTime');
 const reservationGuestQuantity = document.querySelector('#reservation_guestQuantity');
 const maxCapacity = document.querySelector('#max-capacity').textContent;
 
-//const API_HOST = 'https://127.0.0.1:8000/api';
+
 let API_HOST;
 const loadEnv = async () => {
     try {
@@ -61,7 +59,7 @@ const checkPlaces = async () => {
         let phpDate = reservationDay.value;
 
         const hoursForReservationDay = data.map(element => {
-            if (element.reservationDay.substring(0,10) == phpDate) {
+            if (element.reservationDay.substring(0,10) === phpDate) {
                 return [element.reservationTime, element.guestQuantity];
             } else {
                 return null;
@@ -121,7 +119,7 @@ reservationDay.addEventListener('change', (e) => {
     let reservationDay = getDayFromString(phpDate)[1] + ' ' + months[getDayFromString(phpDate)[2]] + ' ?';
 
     dayNameField.textContent = reservationDayName;
-    dayField.textContent = reservationDay;
+    document.querySelector('.day-field').textContent = reservationDay;
 
 });
 
@@ -165,12 +163,17 @@ const handleSchedule = async () => {
 
             if (schedules.length > 1) {
                 reservationTimeOfDay.classList.remove('hideDiv');
-                reservationMidi.addEventListener('click', () => {
+                document.querySelector('#reservationMidi').addEventListener('click', () => {
                     if((reservationGuestQuantity.value)*1 <= (document.querySelector('.midiAvailablePlaces').value)*1){
                         reservationTime.classList.remove('hideDiv');
                         document.querySelector('.midi-available-places').classList.remove('hideDiv');
                         let schedule = getFormatSchedule(schedules[0]);
-                        displayArrivalTimeDiv(schedule);
+                       // if (schedule.length > 0) {
+                            displayArrivalTimeDiv(schedule);
+                        //}else {
+                         //   alert ('Il est trop tard pour réserver une place sur ce créneaux, le restaurant va bientôt fermer. Merci pour votre compréhension.');
+                       // }
+
                     } else {
                         reservationTime.setAttribute('disabled', 'true');
                         reservationTime.classList.remove('hideDiv');
@@ -178,7 +181,7 @@ const handleSchedule = async () => {
                     }
                 });
 
-                reservationSoir.addEventListener('click', () => {
+                document.querySelector('#reservationSoir').addEventListener('click', () => {
                     if((reservationGuestQuantity.value)*1 <= (document.querySelector('.soirAvailablePlaces').value)*1){
                         reservationTime.classList.remove('hideDiv');
                         document.querySelector('.soir-available-places').classList.remove('hideDiv');
@@ -212,7 +215,7 @@ reservationDayRadioYes.addEventListener('click', checkPlaces);
 reservationDayRadioYes.addEventListener('click', handleSchedule);
 
 //reset to make new choice of reservation day
-reservationDayRadioNon.addEventListener('click', () => {
+document.querySelector('#reservationDayRadioNon').addEventListener('click', () => {
     reservationDay.removeAttribute('disabled');
     reservationTimeOfDay.classList.add('hideDiv');
     reservationTime.classList.add('hideDiv');
@@ -235,8 +238,8 @@ reservationTime.addEventListener('click', checkPlaces);
 //when validation radio is checked only display form inputs
 //show div with user personal infos
 validation.addEventListener('click', () => {
-        formReservationTime.classList.remove('hideDiv');
-        secondaryForm.classList.remove('hideDiv');
+        document.querySelector('.form-reservation-time').classList.remove('hideDiv');
+        document.querySelector('.secondary-display').classList.remove('hideDiv');
         reservationBtn.classList.remove('hideDiv');
         reservationDate.remove();
         reservationTimeOfDay.remove();
@@ -328,11 +331,10 @@ function subtractMinutes(date, minutes) {
 //format schedule array: return array of hours every 15min after opening time until closing time - 1h
 //handles case of a reservation during current day opening hours
 function getFormatSchedule (schedule) {
-    let open = subtractMinutes(new Date(schedule.openingTime), 60);
-    let close = subtractMinutes(new Date(schedule.closingTime), 120);
+    let open = new Date(schedule.openingTime);
+    let close = subtractMinutes(new Date(schedule.closingTime), 60);
 
     let openArray = [open];
-
     //adding 15min to open hour until close hour - 1 hour
     while (open < close) {
         open = addMinutes(open, 15);
@@ -351,7 +353,14 @@ function getFormatSchedule (schedule) {
     if (Date.now() >= newReservationDate.getTime()){
         // display only hours > current hour
         let availableOpenArray = openArray.map(item =>formatTimeObject(item));
-        return availableOpenArray.filter(e => e.substring(0,2) > time);
+        // if array of available hours is empty alert message 'to late'
+        if ((availableOpenArray.filter(e => e.substring(0,2) > time)).length > 0){
+            return availableOpenArray.filter(e => e.substring(0,2) > time);
+        } else {
+            alert ('Il est trop tard pour réserver une place sur ce créneau, le restaurant va bientôt fermer. Merci pour votre compréhension.');
+            document.querySelector('#reservationTimeOfDay>.form-check>.form-check-input').setAttribute('disabled', 'true');
+        }
+
     } else {
         // display all hours
         return openArray.map(item =>formatTimeObject(item));

@@ -18,7 +18,7 @@ class MealCategory
     #[ORM\Column(length: 50)]
     private ?string $title = null;
 
-    #[ORM\OneToMany(mappedBy: 'mealCategory', targetEntity: Meal::class)]
+    #[ORM\OneToMany(mappedBy: 'mealCategory', targetEntity: Meal::class, cascade: ['remove'])]
     private Collection $meals;
 
     public function __construct()

@@ -70,7 +70,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Gestion du restaurant');
         yield MenuItem::linkToCrud('Détails du restaurant', 'fa fa-cog', Settings::class);
         yield MenuItem::linkToCrud('Jours de la semaine', 'fa fa-calendar-days', WeekDay::class);
-        yield MenuItem::linkToCrud('Plages horaires', 'fa fa-clock', DailySchedule::class);
+        yield MenuItem::linkToCrud('Plages horaires', 'fa fa-clock', DailySchedule::class)->setDefaultSort(['openingTime' =>'ASC']);
 
         yield MenuItem::section('Gestion des utilisateurs')
             ->setPermission('ROLE_SUPER_ADMIN');
