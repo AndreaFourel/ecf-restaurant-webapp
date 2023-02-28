@@ -152,8 +152,9 @@ const handleSchedule = async () => {
             reservationDay.setAttribute('disabled', 'true');
 
             if(schedules.length === 1) {
+                document.querySelector('.day-available-places').classList.remove('hideDiv');
                 if((document.querySelector('.availableDayPlaces').value)*1 < (reservationGuestQuantity.value)*1) {
-                    document.querySelector('.day-available-places').classList.remove('hideDiv');
+                    //document.querySelector('.day-available-places').classList.remove('hideDiv');
                     reservationTime.setAttribute('disabled', 'true');
                     alert('Action impossible, nombre de places disponibles insuffisant.');//test
                 } else {
@@ -164,9 +165,10 @@ const handleSchedule = async () => {
             if (schedules.length > 1) {
                 reservationTimeOfDay.classList.remove('hideDiv');
                 document.querySelector('#reservationMidi').addEventListener('click', () => {
+                    document.querySelector('.midi-available-places').classList.remove('hideDiv');
                     if((reservationGuestQuantity.value)*1 <= (document.querySelector('.midiAvailablePlaces').value)*1){
                         reservationTime.classList.remove('hideDiv');
-                        document.querySelector('.midi-available-places').classList.remove('hideDiv');
+                        //document.querySelector('.midi-available-places').classList.remove('hideDiv');
                         let schedule = getFormatSchedule(schedules[0]);
                         displayArrivalTimeDiv(schedule);
                     } else {
@@ -178,9 +180,10 @@ const handleSchedule = async () => {
                 });
 
                 document.querySelector('#reservationSoir').addEventListener('click', () => {
+                    document.querySelector('.soir-available-places').classList.remove('hideDiv');
                     if((reservationGuestQuantity.value)*1 <= (document.querySelector('.soirAvailablePlaces').value)*1){
                         reservationTime.classList.remove('hideDiv');
-                        document.querySelector('.soir-available-places').classList.remove('hideDiv');
+                        //document.querySelector('.soir-available-places').classList.remove('hideDiv');
                         let schedule = getFormatSchedule(schedules[1]);
                         displayArrivalTimeDiv(schedule);
                     } else {
