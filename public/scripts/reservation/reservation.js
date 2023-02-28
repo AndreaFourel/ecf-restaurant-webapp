@@ -358,6 +358,7 @@ function getFormatSchedule (schedule) {
             return availableOpenArray.filter(e => e.substring(0,2) > time);
         } else {
             alert ('Il est trop tard pour réserver une place sur ce créneau, le restaurant va bientôt fermer. Merci pour votre compréhension.');
+            reservationTime.setAttribute('disabled', 'true');
             document.querySelector('#reservationTimeOfDay>.form-check>.form-check-input').setAttribute('disabled', 'true');
         }
 
