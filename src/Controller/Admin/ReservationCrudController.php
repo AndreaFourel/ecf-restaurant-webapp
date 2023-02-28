@@ -24,7 +24,7 @@ class ReservationCrudController extends AbstractCrudController
         yield EmailField::new('email', 'Email');
         yield TextField::new('firstName', 'Prénom');
         yield NumberField::new('guestQuantity', 'Nombre de couverts');
-        yield TextField::new('allergyList', 'Alérgies');
+        yield TextField::new('allergyList', 'Allergies');
         yield DateField::new('reservationDay', 'Jour de la réservation')->setFormat('dd MMMM yyyy');
         yield TextField::new('reservationTime', 'Heure d\'arrivée')->onlyOnIndex();
         yield TextField::new('reservationTime', 'Heure d\'arrivée(format à respecter: hh:mm, (exemple: 13:00)')->hideOnIndex();

@@ -152,10 +152,10 @@ const handleSchedule = async () => {
             reservationDay.setAttribute('disabled', 'true');
 
             if(schedules.length === 1) {
-                document.querySelector('.day-available-places').classList.remove('hideDiv');
-
                 if((document.querySelector('.availableDayPlaces').value)*1 < (reservationGuestQuantity.value)*1) {
+                    document.querySelector('.day-available-places').classList.remove('hideDiv');
                     reservationTime.setAttribute('disabled', 'true');
+                    alert('Action impossible, nombre de places disponibles insuffisant.');//test
                 } else {
                     reservationTime.removeAttribute('disabled');
                 }
@@ -168,16 +168,12 @@ const handleSchedule = async () => {
                         reservationTime.classList.remove('hideDiv');
                         document.querySelector('.midi-available-places').classList.remove('hideDiv');
                         let schedule = getFormatSchedule(schedules[0]);
-                       // if (schedule.length > 0) {
-                            displayArrivalTimeDiv(schedule);
-                        //}else {
-                         //   alert ('Il est trop tard pour réserver une place sur ce créneaux, le restaurant va bientôt fermer. Merci pour votre compréhension.');
-                       // }
-
+                        displayArrivalTimeDiv(schedule);
                     } else {
                         reservationTime.setAttribute('disabled', 'true');
                         reservationTime.classList.remove('hideDiv');
                         document.querySelector('.midi-available-places').classList.remove('hideDiv');
+                        alert('Action impossible, nombre de places disponibles insuffisant.');//test
                     }
                 });
 
@@ -191,6 +187,7 @@ const handleSchedule = async () => {
                         reservationTime.classList.remove('hideDiv');
                         reservationTime.setAttribute('disabled', 'true');
                         document.querySelector('.soir-available-places').classList.remove('hideDiv');
+                        alert('Action impossible, nombre de places disponibles insuffisant.');//test
                     }
                 })
 

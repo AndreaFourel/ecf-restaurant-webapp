@@ -4,13 +4,24 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta name="description" content="Site d'un restaurant fictif réalisé dans le cadre d'une évaluation scolaire.">
         <link rel="apple-touch-icon" sizes="180x180" href="/labouchedesgouts/public/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/labouchedesgouts/public/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/labouchedesgouts/public/favicon-16x16.png">
         <link rel="manifest" href="/labouchedesgouts/public/site.webmanifest">
-        <meta name="msapplication-TileColor" content="#da532c">
-        <meta name="theme-color" content="#ffffff">
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <meta name="Content-Language" content="fr">
+        <meta name="Keywords" content="restaurant, sortie entre amis, manger, cuisine">
+        <meta name="Subject" content="Restaurant underground">
+        <meta name="Author" content="Andréa Fourel">
+        <meta name="Publisher" content="Andréa Fourel">
+        <meta name="Identifier-Url" content="https://andreafourel.fr/labouchedesgouts/public">
+        <meta name="Reply-To" content="lbdg.ecf@gmail.com">
+        <meta name="Revisit-After" content="21 days">
+        <meta name="Robots" content="all">
+        <meta name="Rating" content="general">
+        <meta name="Distribution" content="global">
+        <meta name="Geography" content="France, Gironde, Langon, 33210">
+        <meta name="Category" content="food">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}

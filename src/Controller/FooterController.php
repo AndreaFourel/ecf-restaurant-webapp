@@ -12,22 +12,22 @@ use Symfony\Component\HttpFoundation\Response;
 
 class FooterController extends AbstractController
 {
-
-
     public function displaySchedule(ManagerRegistry $doctrine): Response
     {
         $weekDays = $doctrine->getRepository(WeekDay::class)->findAll();
         $dailySchedule = $doctrine->getRepository(DailySchedule::class)->findAll();
         $address = $doctrine->getRepository(Settings::class)->findOneByItemField('Adresse');
         $phoneNumber = $doctrine->getRepository(Settings::class)->findOneByItemField('Téléphone');
-        //dd($weekDays);
-        //dd($dailySchedule);
+        $maxCapacity = $doctrine->getRepository(Settings::class)->findOneByItemField('Capacité maximale');
+        $email = $doctrine->getRepository(Settings::class)->findOneByItemField('Email');
+
         return $this->render('layout_fragments/_footer.html.twig', [
             'weekDays' => $weekDays,
             'dailySchedule' => $dailySchedule,
             'address' => $address,
             'phoneNumber' => $phoneNumber,
+            'maxCapacity' => $maxCapacity,
+            'email' => $email,
         ]);
     }
-
 }

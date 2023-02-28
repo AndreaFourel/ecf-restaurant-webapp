@@ -19,7 +19,7 @@ class SettingsCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        //yield TextField::new('item', 'Elément')->onlyOnIndex();
+        yield TextField::new('item', 'Elément')->onlyOnIndex();
         yield TextField::new('description', 'Description');
         yield TextField::new('value', 'Valeur');
     }
@@ -36,7 +36,8 @@ class SettingsCrudController extends AbstractCrudController
         return $actions
             ->setPermission(Action::NEW, 'ROLE_SUPER_ADMIN')
             ->setPermission(Action::DELETE,'ROLE_SUPER_ADMIN')
-            ->remove(Crud::PAGE_INDEX, Action::DELETE)
-            ->remove(Crud::PAGE_INDEX, Action::NEW);
+            ->remove(Crud::PAGE_INDEX, Action::NEW)
+            ->remove(Crud::PAGE_INDEX, Action::DELETE);
+
     }
 }
