@@ -40,7 +40,7 @@ window.addEventListener('load', loadEnv);
 //on change of number of guests input, show date of reservation input and disable number of guests input
 reservationGuestQuantity.addEventListener('change', () => {
     document.querySelector('.show-reservation-div').classList.remove('hideDiv');
-    reservationGuestQuantity.setAttribute('disabled', 'true');
+    //reservationGuestQuantity.setAttribute('disabled', 'true');
 })
 
 //call API reservations
@@ -108,6 +108,7 @@ const checkPlaces = async () => {
 
 //selecting the day name of the reservation day
 reservationDay.addEventListener('change', (e) => {
+    reservationGuestQuantity.setAttribute('disabled', 'true');
     let phpDate = e.target.value;
 
     reservationDate.classList.remove('hideDiv');
@@ -156,7 +157,7 @@ const handleSchedule = async () => {
                 if((document.querySelector('.availableDayPlaces').value)*1 < (reservationGuestQuantity.value)*1) {
                     //document.querySelector('.day-available-places').classList.remove('hideDiv');
                     reservationTime.setAttribute('disabled', 'true');
-                    alert('Action impossible, nombre de places disponibles insuffisant.');//test
+                    alert('Action impossible, nombre de places disponibles insuffisant.');
                 } else {
                     reservationTime.removeAttribute('disabled');
                 }
@@ -175,7 +176,7 @@ const handleSchedule = async () => {
                         reservationTime.setAttribute('disabled', 'true');
                         reservationTime.classList.remove('hideDiv');
                         document.querySelector('.midi-available-places').classList.remove('hideDiv');
-                        alert('Action impossible, nombre de places disponibles insuffisant.');//test
+                        alert('Action impossible, nombre de places disponibles insuffisant.');
                     }
                 });
 
@@ -190,7 +191,7 @@ const handleSchedule = async () => {
                         reservationTime.classList.remove('hideDiv');
                         reservationTime.setAttribute('disabled', 'true');
                         document.querySelector('.soir-available-places').classList.remove('hideDiv');
-                        alert('Action impossible, nombre de places disponibles insuffisant.');//test
+                        alert('Action impossible, nombre de places disponibles insuffisant.');
                     }
                 })
 
@@ -358,8 +359,9 @@ function getFormatSchedule (schedule) {
             return availableOpenArray.filter(e => e.substring(0,2) > time);
         } else {
             alert ('Il est trop tard pour réserver une place sur ce créneau, le restaurant va bientôt fermer. Merci pour votre compréhension.');
-            reservationTime.setAttribute('disabled', 'true');
-            document.querySelector('#reservationTimeOfDay>.form-check>.form-check-input').setAttribute('disabled', 'true');
+            return availableOpenArray.filter(e => e.substring(0,2) > time);
+            //reservationTime.setAttribute('disabled', 'true');
+            //document.querySelector('#reservationTimeOfDay>.form-check>.form-check-input').setAttribute('disabled', 'true');
         }
 
     } else {
