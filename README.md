@@ -5,8 +5,8 @@
 
 ## Démarche à suivre pour l'exécution en local de l'application:
 
-Dans un premier temps créez un dossier vide sur votre PC pour recevoir le projet et ouvrez le avec votre éditeur de text préféré.
-Assurez vous que vous avez une vérsion PHP suffisante: PHP 8.1.0 minimum.
+Dans un premier temps créez un dossier vide sur votre PC pour recevoir le projet et ouvrez-le avec votre éditeur de text préféré.
+Assurez-vous que vous avez une vérsion PHP suffisante: PHP 8.1.0 minimum.
 
 Dans le terminal copiez la commande suivante :
 
@@ -39,7 +39,8 @@ Il contient le mail et le mot de passe du superAdmin pour l'environnement local:
 - admin1@mail.com
 - admin1234!
 
-## Variable d'environement utilisés en développement et leur valeurs (à adapter éventuellement)
+## Variables d'environement utilisés en développement et leur valeurs (à adapter éventuellement)
 
 - API_HOST=https://localhost:8000/api
 - HOME_PATH=/
+- EMAIL=admin@myrestaurant.com
