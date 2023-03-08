@@ -48,7 +48,7 @@ reservationGuestQuantity.addEventListener('change', () => {
 //checks available places for the chosen date
 //add available places inputs in hidden div outside the form
 const checkPlaces = async () => {
-    try {//'/labouchedesgouts/api/reservations'
+    try {
         const response = await  fetch(`${API_HOST}/reservations`)
         const data = await response.json();
         if(!response.ok) {
@@ -135,7 +135,7 @@ const handleSchedule = async () => {
 
     let reservationDayName = dayNameField.textContent;
 
-    try {//'/labouchedesgouts/api/weekDays'
+    try {
         const response = await fetch(`${API_HOST}/weekDays`);
         const data = await response.json();
 
@@ -151,6 +151,8 @@ const handleSchedule = async () => {
             let schedules = apiDataForReservationDay.dailySchedule;
             reservationTimeOfDay.classList.remove('hideDiv');
             reservationDay.setAttribute('disabled', 'true');
+
+            console.log(schedules.length);
 
             if(schedules.length === 1) {
                 document.querySelector('.day-available-places').classList.remove('hideDiv');
@@ -272,9 +274,7 @@ if(document.querySelector('#setUserDefaultChoice')){
 
 }
 
-
 ///////////////reservationUtils///////////////////
-//
 
 const totalOfDayReservations = (value) => {
     let sum = 0;

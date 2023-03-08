@@ -124,12 +124,12 @@ main, .user-action {
     box-shadow: 0px 1px 4px 3px #2f2f2f;
 }
 
-.carousel-caption{
+.carousel-caption {
     opacity:0;
     transition:500ms ease-in-out;
 }
 
-.carousel-item:hover .carousel-caption{
+.carousel-item:active .carousel-caption {
     opacity:1;
 }
 
@@ -285,6 +285,10 @@ tr {
     /*user-action*/
     .user-form, .table{
         width: 50vw;
+    }
+
+    .carousel-item:hover .carousel-caption {
+        opacity:1;
     }
 
 }
