@@ -31,7 +31,7 @@ Effectuez les migrations:
 
 - _php bin/console doctrine:migration:migrate_
 
-Démarrez le serveur (assurez vous d'être dans le don dossier):
+Démarrez le serveur (assurez vous d'être dans le bon dossier):
 
 - _symfony server:start_
 ## Un fichier .sql est à votre disposition dans le dossier database afin d'apporter un minimum de données à votre base de données. 
@@ -39,7 +39,7 @@ Il contient le mail et le mot de passe du superAdmin pour l'environnement local:
 - admin1@mail.com
 - admin1234!
 
-## Variables d'environement utilisés en développement et leur valeurs (à adapter éventuellement)
+## Variables d'environnement utilisées en développement et leur valeurs (à adapter éventuellement)
 
 - API_HOST=https://localhost:8000/api
 - HOME_PATH=/
