@@ -39,7 +39,7 @@ Il contient le mail et le mot de passe du superAdmin pour l'environnement local:
 - admin1@mail.com
 - admin1234!
 
-## Variables d'environnement utilisées en développement et leur valeurs (à adapter éventuellement)
+## Variables d'environnement utilisées en développement et leurs valeurs (à adapter éventuellement)
 
 - API_HOST=https://localhost:8000/api
 - HOME_PATH=/
