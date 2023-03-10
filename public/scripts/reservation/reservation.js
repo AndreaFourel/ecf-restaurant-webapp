@@ -84,10 +84,10 @@ const checkPlaces = async () => {
         let htmlTextForDay = '<p class="mt-3 reservation-messages-text">' + availableDayPlaces + ' places disponibles à cette date</p>'
         document.querySelector('.day-available-places').innerHTML = htmlTextForDay;
 
-        let htmlTextForMidi = '<p class="mt-3 reservation-messages-text">' + midiAvailablePlaces + ' places disponibles pour ce créneaux</p>'
+        let htmlTextForMidi = '<p class="mt-3 reservation-messages-text">' + midiAvailablePlaces + ' places disponibles pour ce créneau</p>'
         document.querySelector('.midi-available-places').innerHTML = htmlTextForMidi;
 
-        let htmlTextForSoir = '<p class="mt-3 reservation-messages-text">' + soirAvailablePlaces + ' places disponibles pour ce créneaux</p>'
+        let htmlTextForSoir = '<p class="mt-3 reservation-messages-text">' + soirAvailablePlaces + ' places disponibles pour ce créneau</p>'
         document.querySelector('.soir-available-places').innerHTML = htmlTextForSoir;
 
 
