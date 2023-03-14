@@ -15,8 +15,8 @@
                     <div class="carousel-inner">
                         {% for image in images %}
                             <div {% if loop.index0 == 0 %} class="carousel-item container-fluid active" {% else %} class="carousel-item container-fluid" {% endif %}>
-                                <img src="upload/images/imagesGallery/{{image.fileName}}" class="carousel-img d-block w-100" alt="image">
-                                <div class="carousel-caption d-none d-md-block">
+                                <img src="upload/images/imagesGallery/{{image.fileName}}" class="carousel-img d-block w-100" alt="{{ image.title }}">
+                                <div class="carousel-caption">
                                     <p>{{ image.title }}</p>
                                 </div>
                             </div>
