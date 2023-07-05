@@ -29,9 +29,11 @@ class DashboardController extends AbstractDashboardController
     public function index(): Response
     {
         // Option 1. You can make your dashboard redirect to some common page of your backend
-        //
+
         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        return $this->redirect($adminUrlGenerator->setController(ReservationCrudController::class)->generateUrl());
+        return $this->redirect($adminUrlGenerator
+            ->setController(ReservationCrudController::class)
+            ->generateUrl());
 
         // Option 2. You can make your dashboard redirect to different pages depending on the user
         //
@@ -57,7 +59,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToUrl('Page d\'accueil', 'fa fa-home', $_ENV['HOME_PATH']);
 
         yield MenuItem::section('Gestion des Réservations');
-        yield MenuItem::linkToCrud('Les Réservations', 'fa fa-utensils', Reservation::class)->setDefaultSort(['reservationDay'=>'ASC']);
+        yield MenuItem::linkToCrud('Les Réservations', 'fa fa-utensils', Reservation::class)
+            ->setDefaultSort(['reservationDay'=>'ASC']);
 
         yield MenuItem::section('La carte');
         yield MenuItem::linkToCrud('Les catégories', 'fa fa fa-tags', MealCategory::class);
@@ -70,7 +73,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Gestion du restaurant');
         yield MenuItem::linkToCrud('Détails du restaurant', 'fa fa-cog', Settings::class);
         yield MenuItem::linkToCrud('Jours d\'ouverture et/ou fermeture du restaurant', 'fa fa-calendar-days', WeekDay::class);
-        yield MenuItem::linkToCrud('Plages horaires', 'fa fa-clock', DailySchedule::class)->setDefaultSort(['openingTime' =>'ASC']);
+        yield MenuItem::linkToCrud('Plages horaires', 'fa fa-clock', DailySchedule::class)
+            ->setDefaultSort(['openingTime' =>'ASC']);
 
         yield MenuItem::section('Gestion des utilisateurs')
             ->setPermission('ROLE_SUPER_ADMIN');

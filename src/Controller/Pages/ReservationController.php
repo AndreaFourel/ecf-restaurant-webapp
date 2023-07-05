@@ -19,7 +19,8 @@ class ReservationController extends AbstractController
     {
 
         $user =$this->getUser();
-        $settings = $doctrine->getRepository(Settings::class)->findOneByItemField('Capacité maximale');
+        $settings = $doctrine->getRepository(Settings::class)
+            ->findOneByItemField('Capacité maximale');
 
         $reservation = new Reservation();
 

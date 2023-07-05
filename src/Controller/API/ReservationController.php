@@ -14,8 +14,9 @@ class ReservationController extends AbstractController
     public function getReservations(ReservationRepository $reservationRepository):JsonResponse
     {
         $reservations = $reservationRepository->findAll();
-        //dd($reservations);
 
+        //Returns a JsonResponse that uses the serializer component
+        //headers array empty due to usage of JsonResponse instead of Response (content-type = application/json)
         return $this->json($reservations, Response::HTTP_OK, [], ['groups' => 'getReservations']);
 
     }

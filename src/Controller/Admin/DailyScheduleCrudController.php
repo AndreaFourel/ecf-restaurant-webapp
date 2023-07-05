@@ -21,8 +21,11 @@ class DailyScheduleCrudController extends AbstractCrudController
     {
         yield TimeField::new('openingTime', 'Heure d\'ouverture');
         yield TimeField::new('closingTime', 'Heure de fermeture');
-        yield AssociationField::new('weekDays', 'Jours')->onlyOnForms()->setFormTypeOption('by_reference', false);//to make changes into the inverse side of association
-        yield ArrayField::new('daysName', 'Jours de la semaine')->onlyOnIndex();
+        yield AssociationField::new('weekDays', 'Jours')
+            ->onlyOnForms()
+            ->setFormTypeOption('by_reference', false);//to make changes into the inverse side of association
+        yield ArrayField::new('daysName', 'Jours de la semaine')
+            ->onlyOnIndex();
     }
 
     public function configureCrud(Crud $crud): Crud

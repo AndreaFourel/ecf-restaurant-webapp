@@ -14,6 +14,7 @@ class WeekDayController extends AbstractController
     public function getWeekDays(WeekDayRepository $weekDayRepository):JsonResponse
     {
         $weekDays = $weekDayRepository->findAll();
+        //Returns a JsonResponse that uses the serializer component
         return $this->json($weekDays, Response::HTTP_OK, [], ['groups' => 'getWeekDays']);
 
     }

@@ -13,7 +13,6 @@
 
 * {
     box-sizing: border-box;
-
 }
 
 body{
@@ -48,7 +47,7 @@ h1, h2, h3, h4 {
 .navbar {
     background: var(--main-bg-color);
     position: sticky;
-    top:0px;
+    top:0;
     z-index: 100;
 }
 
@@ -70,7 +69,7 @@ h1, h2, h3, h4 {
 }
 .navbar-toggler {
     background: var(--second-bg-color);
-    box-shadow: 0px 1px 4px 1px black;
+    box-shadow: 0 1px 4px 1px black;
 }
 .navbar-toggler-icon {
     color: var(--second-bg-color);
@@ -97,8 +96,8 @@ h1, h2, h3, h4 {
 }
 
 .header-img {
-    border-radius: 50% 50% 0% 0%;
-    box-shadow: 0px 1px 4px 3px black;
+    border-radius: 50% 50% 0 0;
+    box-shadow: 0 1px 4px 3px black;
     display: none;
 }
 
@@ -106,7 +105,7 @@ h1, h2, h3, h4 {
 
 main, .user-action {
     background: var(--second-bg-color);
-    box-shadow: inset 0px 0px 4px 2px black;
+    box-shadow: inset 0 0 4px 2px black;
 }
 
 /*carousel*/
@@ -121,7 +120,7 @@ main, .user-action {
 }
 
 .carousel-img {
-    box-shadow: 0px 1px 4px 3px #2f2f2f;
+    box-shadow: 0 1px 4px 3px #2f2f2f;
 }
 
 .carousel-caption {
@@ -141,7 +140,7 @@ main, .user-action {
 }
 
 .meals-shadow {
-    box-shadow: inset 0px 0px 4px 2px black;
+    box-shadow: inset 0 0 4px 2px black;
 }
 
 .blue-title {
@@ -182,7 +181,7 @@ tr {
 }
 
 .reservation-messages-text {
-    font_size: 1.2rem;
+    font-size: 1.2rem;
     font-weight: 600;
 }
 
@@ -201,7 +200,7 @@ tr {
 .btn-form {
     background: var(--main-bg-color);
     color: var(--text-light-color);
-    box-shadow: 0px 1px 4px 3px #2f2f2f;
+    box-shadow: 0 1px 4px 3px #2f2f2f;
 
 }
 

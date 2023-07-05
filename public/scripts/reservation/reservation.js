@@ -45,7 +45,7 @@ reservationGuestQuantity.addEventListener('change', () => {
  */
 const checkPlaces = async () => {
     try {
-        const response = await  fetch(`${API_HOST}/reservations`)
+        const response = await fetch(`${API_HOST}/reservations`)
         const data = await response.json();
         if(!response.ok) {
             console.log(response.status);
@@ -61,6 +61,7 @@ const checkPlaces = async () => {
                 return null;
             }
         })
+
 
         const cleanHours = hoursForReservationDay.filter((e)=>{
             return e !== null;
@@ -157,6 +158,7 @@ const handleSchedule = async () => {
                     reservationTime.classList.remove('hideDiv');
                     document.querySelector('.midi-available-places').classList.remove('hideDiv');
                     if((reservationGuestQuantity.value)*1 <= (document.querySelector('.midiAvailablePlaces').value)*1){
+                        reservationTime.removeAttribute('disabled');
                         let schedule = getFormatSchedule(schedules[0]);
                         displayArrivalTimeDiv(schedule);
                     } else {
@@ -170,6 +172,7 @@ const handleSchedule = async () => {
                     reservationTime.classList.remove('hideDiv');
                     document.querySelector('.soir-available-places').classList.remove('hideDiv');
                     if((reservationGuestQuantity.value)*1 <= (document.querySelector('.soirAvailablePlaces').value)*1){
+                        reservationTime.removeAttribute('disabled');
                         let schedule = getFormatSchedule(schedules[1]);
                         displayArrivalTimeDiv(schedule);
                     } else {
@@ -342,7 +345,6 @@ function getFormatSchedule (schedule) {
     //get current hour
     let today = new Date();
     let time = today.getHours();
-
     //getting the reservation day Timestamp
     let reservationDate = reservationDay.value;
     reservationDate = reservationDate.split("-");
@@ -358,7 +360,6 @@ function getFormatSchedule (schedule) {
             alert ('Il est trop tard pour réserver une place sur ce créneau. Merci pour votre compréhension.');
             return availableOpenArray.filter(e => e.substring(0,2) > time);
         }
-
     } else {
         // display all hours
         return openArray.map(item =>formatTimeObject(item));

@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\DailySchedule;
 use App\Entity\Settings;
 use App\Entity\WeekDay;
-use App\Repository\WeekDayRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
